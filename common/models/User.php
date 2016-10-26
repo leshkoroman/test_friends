@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use app\common\models\Friends;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -186,4 +187,9 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
+    public function getFriends() {
+        return $this->hasMany(Friends::className(), ['user_id' => 'id']);
+    }
+
 }
